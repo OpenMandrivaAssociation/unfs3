@@ -13,7 +13,6 @@ Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 UNFS3 is a user-space implementation of the NFS (Network File System) version 3
