@@ -1,11 +1,11 @@
 Summary:	UNFS3 user-space NFSv3 server
 Name:		unfs3
-Version:	0.9.17
-Release:	%mkrel 4
+Version:	0.9.21
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Servers
-Url:		http://sourceforge.net/projects/unfs3/
-Source0:	http://prdownloads.sourceforge.net/unfs3/unfs3-%{version}.tar.bz2
+URL:		http://sourceforge.net/projects/unfs3/
+Source0:	http://prdownloads.sourceforge.net/unfs3/unfs3-%{version}.tar.gz
 Source1:	unfs.sysinit
 Requires:	portmap
 Provides:	nfs-server
@@ -13,7 +13,7 @@ Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 UNFS3 is a user-space implementation of the NFS (Network File System) version 3
@@ -55,5 +55,3 @@ rm -rf "%{buildroot}"
 %attr(0755,root,root) %{_sbindir}/unfsd
 %attr(0644,root,root) %{_mandir}/man7/tags.*
 %attr(0644,root,root) %{_mandir}/man8/unfsd.*
-
-
