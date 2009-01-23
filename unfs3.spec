@@ -1,6 +1,6 @@
 Summary:	UNFS3 user-space NFSv3 server
 Name:		unfs3
-Version:	0.9.21
+Version:	0.9.22
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Servers
