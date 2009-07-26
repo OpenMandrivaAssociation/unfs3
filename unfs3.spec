@@ -26,10 +26,8 @@ protocol.
 cp %{SOURCE1} unfs3.init
 
 %build
-
 %configure2_5x
-
-%make
+%__make
 
 %install
 rm -rf "%{buildroot}"
