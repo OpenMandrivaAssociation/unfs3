@@ -1,13 +1,13 @@
 Summary:	UNFS3 user-space NFSv3 server
 Name:		unfs3
 Version:	0.9.22
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD
 Group:		System/Servers
 URL:		http://sourceforge.net/projects/unfs3/
 Source0:	http://prdownloads.sourceforge.net/unfs3/unfs3-%{version}.tar.gz
 Source1:	unfs.sysinit
-Requires:	portmap
+Requires:	rpcbind
 Provides:	nfs-server
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
@@ -33,7 +33,6 @@ cp %{SOURCE1} unfs3.init
 
 %install
 rm -rf "%{buildroot}"
-
 %makeinstall_std
 
 install -d %{buildroot}%{_initrddir}
@@ -51,7 +50,7 @@ rm -rf "%{buildroot}"
 %files
 %attr(-,root,root)
 %doc CREDITS README* LICENSE NEWS contrib doc
-%attr(0755,root,root) %{_initrddir}/unfs3
-%attr(0755,root,root) %{_sbindir}/unfsd
-%attr(0644,root,root) %{_mandir}/man7/tags.*
-%attr(0644,root,root) %{_mandir}/man8/unfsd.*
+%{_initrddir}/unfs3
+%{_sbindir}/unfsd
+%{_mandir}/man7/tags.*
+%{_mandir}/man8/unfsd.*
