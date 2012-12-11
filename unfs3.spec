@@ -52,3 +52,44 @@ rm -rf "%{buildroot}"
 %{_sbindir}/unfsd
 %{_mandir}/man7/tags.*
 %{_mandir}/man8/unfsd.*
+
+
+%changelog
+* Sun Jul 26 2009 Guillaume Rousse <guillomovitch@mandriva.org> 0.9.22-2mdv2010.0
++ Revision: 400300
+- disable parallel build, it breaks on klodia
+- fix dependencies
+- spec cleanup
+
+* Fri Jan 23 2009 Jérôme Soyer <saispo@mandriva.org> 0.9.22-1mdv2009.1
++ Revision: 332920
+- New upstream release
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - 0.9.21
+
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - rebuild
+
+* Wed Jul 30 2008 Thierry Vignaud <tvignaud@mandriva.com> 0.9.17-3mdv2009.0
++ Revision: 255145
+- rebuild
+
+* Wed Jan 02 2008 Olivier Blin <oblin@mandriva.com> 1mdv2008.1-current
++ Revision: 140924
+- restore BuildRoot
+
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - kill re-definition of %%buildroot on Pixel's request
+
+
+* Tue Feb 06 2007 Oden Eriksson <oeriksson@mandriva.com> 0.9.17-1mdv2007.0
++ Revision: 116603
+- Import unfs3
+
+* Tue Feb 06 2007 Oden Eriksson <oeriksson@mandriva.com> 0.9.17-1
+- 0.9.17
+
+* Fri Sep 29 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.15-1mdk
+- initial Mandriva package (mille-xterm import)
+
