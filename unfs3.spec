@@ -1,4 +1,4 @@
-Summary:	UNFS3 user-space NFSv3 server
+Summary:	User-space NFSv3 server
 Name:		unfs3
 Version:	0.9.22
 Release:	%mkrel 2
