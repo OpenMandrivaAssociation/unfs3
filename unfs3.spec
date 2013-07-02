@@ -1,7 +1,7 @@
 Summary:	User-space NFSv3 server
 Name:		unfs3
 Version:	0.9.22
-Release:	%mkrel 2
+Release:	3
 License:	BSD
 Group:		System/Servers
 URL:		http://sourceforge.net/projects/unfs3/
@@ -13,7 +13,6 @@ Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 UNFS3 is a user-space implementation of the NFS (Network File System) version 3
