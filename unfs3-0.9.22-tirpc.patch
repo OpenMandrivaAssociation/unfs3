@@ -1,0 +1,77 @@
+diff -urN unfs3-0.9.22/daemon.c unfs3-0.9.22-patched/daemon.c
+--- unfs3-0.9.22/daemon.c	2009-01-01 01:52:09.000000000 +1000
++++ unfs3-0.9.22-patched/daemon.c	2014-08-26 02:06:20.000000000 +1100
+@@ -110,7 +110,7 @@
+  */
+ struct in_addr get_remote(struct svc_req *rqstp)
+ {
+-    return (svc_getcaller(rqstp->rq_xprt))->sin_addr;
++    return (unfs_getrpccaller_in(rqstp->rq_xprt))->sin_addr;
+ }
+ 
+ /*
+@@ -118,7 +118,7 @@
+  */
+ short get_port(struct svc_req *rqstp)
+ {
+-    return (svc_getcaller(rqstp->rq_xprt))->sin_port;
++    return (unfs_getrpccaller_in(rqstp->rq_xprt))->sin_port;
+ }
+ 
+ /*
+diff -urN unfs3-0.9.22/daemon.h unfs3-0.9.22-patched/daemon.h
+--- unfs3-0.9.22/daemon.h	2008-07-16 03:55:04.000000000 +1100
++++ unfs3-0.9.22-patched/daemon.h	2014-08-26 02:05:05.000000000 +1100
+@@ -20,6 +20,16 @@
+ #define setegid(g) setresgid(-1, g, -1)
+ #endif
+ 
++static inline struct sockaddr_in *unfs_getrpccaller_in(SVCXPRT *xprt)
++{
++	return (struct sockaddr_in *)svc_getcaller(xprt);
++}
++
++static inline struct sockaddr *unfs_getrpccaller(SVCXPRT *xprt)
++{
++	return (struct sockaddr *)svc_getcaller(xprt);
++}
++
+ /* error handling */
+ void daemon_exit(int);
+ void logmsg(int, const char *, ...);
+diff -urN unfs3-0.9.22/Makefile.in unfs3-0.9.22-patched/Makefile.in
+--- unfs3-0.9.22/Makefile.in	2007-12-06 05:11:28.000000000 +1000
++++ unfs3-0.9.22-patched/Makefile.in	2014-08-26 02:10:00.456831487 +1100
+@@ -12,7 +12,7 @@
+        md5.o mount.o nfs.o password.o readdir.o user.o xdr.o winsupport.o
+ CONFOBJ = Config/lib.a
+ EXTRAOBJ = @EXTRAOBJ@
+-LDFLAGS = @LDFLAGS@ @LIBS@ @LEXLIB@
++LDFLAGS = @LDFLAGS@ @LIBS@ @LEXLIB@ -ltirpc
+ EXEEXT = @EXEEXT@
+ 
+ prefix = @prefix@
+diff -urN unfs3-0.9.22/xdr.c unfs3-0.9.22-patched/xdr.c
+--- unfs3-0.9.22/xdr.c	2008-02-17 05:56:07.000000000 +1000
++++ unfs3-0.9.22-patched/xdr.c	2014-08-26 02:16:59.000000000 +1100
+@@ -17,6 +17,8 @@
+ #define HAVE_XDR_UINT64_T 1
+ #endif
+ 
++#define xdr_uint32 xdr_uint32_t
++
+ #include "mount.h"
+ #include "nfs.h"
+ #include "xdr.h"
+diff -urN unfs3-0.9.22/xdr.h unfs3-0.9.22-patched/xdr.h
+--- unfs3-0.9.22/xdr.h	2004-12-25 10:10:25.000000000 +1000
++++ unfs3-0.9.22-patched/xdr.h	2014-08-26 02:18:58.378798983 +1100
+@@ -29,7 +29,7 @@
+ extern bool_t xdr_uint64 (XDR *, uint64*);
+ #endif
+ #if HAVE_XDR_UINT32 == 0
+-extern bool_t xdr_uint32 (XDR *, uint32*);
++extern bool_t xdr_uint32_t (XDR *, uint32*);
+ #endif
+ #if HAVE_XDR_INT32 == 0
+ extern bool_t xdr_int32 (XDR *, int32*);
