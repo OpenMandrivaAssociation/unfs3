@@ -4,7 +4,7 @@ Version:	0.9.22
 Release:	5
 License:	BSD
 Group:		System/Servers
-Url:		http://sourceforge.net/projects/unfs3/
+Url:		https://sourceforge.net/projects/unfs3/
 Source0:	http://prdownloads.sourceforge.net/unfs3/unfs3-%{version}.tar.gz
 Source1:	unfs.sysinit
 # Based on http://www.spinics.net/lists/linux-nfs/msg05399.html
