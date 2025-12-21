@@ -9,6 +9,11 @@ Source0:	http://prdownloads.sourceforge.net/unfs3/unfs3-%{version}.tar.gz
 Source1:	unfs.sysinit
 # Based on http://www.spinics.net/lists/linux-nfs/msg05399.html
 Patch0:		unfs3-0.9.22-tirpc.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	pkgconfig(libtirpc)
